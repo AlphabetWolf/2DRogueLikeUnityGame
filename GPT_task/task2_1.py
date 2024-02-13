@@ -1,18 +1,9 @@
-def process_data(data):
-    # Adjusting data items
-    adjusted_data = []
-    for item in data:
-        if item % 2 == 0:
-            adjusted_data.append(item + 1)
-        else:
-            adjusted_data.append(item - 1)
+def process_data_refactored(data):
+    def adjust_and_scale(item):
+        # Adjust the item
+        adjusted_item = item + 1 if item % 2 == 0 else item - 1
+        # Scale the adjusted item
+        return adjusted_item * 2 if adjusted_item < 10 else adjusted_item / 2
     
-    # Scaling adjusted data
-    scaled_data = []
-    for item in adjusted_data:
-        if item < 10:
-            scaled_data.append(item * 2)
-        else:
-            scaled_data.append(item / 2)
-    
-    return scaled_data
+    # Apply adjustment and scaling in a single step using list comprehension
+    return [adjust_and_scale(item) for item in data]
